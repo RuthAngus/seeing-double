@@ -18,12 +18,14 @@ def load_kepler_data(LC_DIR):
     flux = t["PDCSAP_FLUX"]
     flux_err = t["PDCSAP_FLUX_ERR"]
     q = t["SAP_QUALITY"]
+    cadence = t["CADENCENO"]
     m = np.isfinite(time) * np.isfinite(flux) * np.isfinite(flux_err) * \
             (q == 0)
     x = time[m]
     med = np.median(flux[m])
     y = flux[m]/med - 1
     yerr = flux_err[m]/med
+    cadence = cadence[m]
     for fname in fnames[1:]:
        hdulist = pyfits.open(fname)
        t = hdulist[1].data
@@ -31,10 +33,12 @@ def load_kepler_data(LC_DIR):
        flux = t["PDCSAP_FLUX"]
        flux_err = t["PDCSAP_FLUX_ERR"]
        q = t["SAP_QUALITY"]
+       cadence = t["CADENCENO"]
        m = np.isfinite(time) * np.isfinite(flux) * np.isfinite(flux_err) * \
                (q == 0)
        x = np.concatenate((x, time[m]))
        med = np.median(flux[m])
        y = np.concatenate((y, flux[m]/med - 1))
        yerr = np.concatenate((yerr, flux_err[m]/med))
-    return x, y, yerr
+       cadence = np.concatenate((cadence, cadence[m]))
+    return x, y, yerr, cadence
