@@ -2,6 +2,8 @@
 Identifying binary stars using their light curves only
 
 To generate a training and testing set, clone this repository and cd into it.
+This code produces light curves for 'single' stars and 'double' stars, where
+the double stars are two single star light curves added together.
 
 The function assemble_data in 'make_training_set.py' will generate synthetic
 light curves and save them to a directory of your choice (default is current
