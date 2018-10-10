@@ -8,7 +8,12 @@ light curves and save them to a directory of your choice (default is current
 directory). Example usage:
 
 ```python
-lc_dir = "/Users/ruthangus/.kplr/data/lightcurves"
-assemble_data(10, lc_dir, ftrain=.8, fdouble=.5, ndays=70, path=".",
-                saveplot=True)
+lc_dir = "/Users/ruthangus/.kplr/data/lightcurves"  # The directory where
+.kplr save light curves
+assemble_data(10, lc_dir, ftrain=.8, fdouble=.5, ndays=70, path=".", saveplot=True)
 ```
+
+Dependencies:
+numpy, kplr, pandas and matplotlib.
+
+All these dependencies can be downloaded with pip install.
