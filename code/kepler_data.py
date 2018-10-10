@@ -33,12 +33,12 @@ def load_kepler_data(LC_DIR):
        flux = t["PDCSAP_FLUX"]
        flux_err = t["PDCSAP_FLUX_ERR"]
        q = t["SAP_QUALITY"]
-       cadence = t["CADENCENO"]
+       c = t["CADENCENO"]
        m = np.isfinite(time) * np.isfinite(flux) * np.isfinite(flux_err) * \
                (q == 0)
        x = np.concatenate((x, time[m]))
        med = np.median(flux[m])
        y = np.concatenate((y, flux[m]/med - 1))
        yerr = np.concatenate((yerr, flux_err[m]/med))
-       cadence = np.concatenate((cadence, cadence[m]))
+       cadence = np.concatenate((cadence, c[m]))
     return x, y, yerr, cadence
